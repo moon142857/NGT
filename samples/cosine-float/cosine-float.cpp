@@ -93,6 +93,24 @@ int main(int argc, char **argv)
         ret = index.append(BB2);
         cout << "append " << ret << endl;
 
+        ret = index.append(AA1);
+        cout << "append " << ret << endl;
+        ret = index.append(AA2);
+        cout << "append " << ret << endl;
+        ret = index.append(BB1);
+        cout << "append " << ret << endl;
+        ret = index.append(BB2);
+        cout << "append " << ret << endl;
+
+                ret = index.append(AA1);
+        cout << "append " << ret << endl;
+        ret = index.append(AA2);
+        cout << "append " << ret << endl;
+        ret = index.append(BB1);
+        cout << "append " << ret << endl;
+        ret = index.append(BB2);
+        cout << "append " << ret << endl;
+
         for(size_t j = 0; j< 192;++j)
             {
                 AA1[j] = 0;
@@ -109,7 +127,7 @@ int main(int argc, char **argv)
         cout << "demo createIndex mem: " << getmemused() - m1 << " time: " << getms() - t1 <<  endl;
 
         m1 = getmemused(); t1 = getms();
-        for (size_t i = 0; i < 100; i++)
+        for (size_t i = 0; i < 1000; i++)
         {
             float pp[192];
             
@@ -144,8 +162,7 @@ int main(int argc, char **argv)
         cout << "demo append mem: " << getmemused() - m1 << " time: " << getms() - t1 <<  endl;
         
 
-       
-
+    
         std::filebuf fb;
         fb.open ("test.txt",std::ios::out);
         std::ostream os(&fb);
@@ -220,16 +237,17 @@ int main(int argc, char **argv)
         NGT::SearchQuery sc(query);
         NGT::ObjectDistances objects;
         sc.setResults(&objects);
-        //sc.setSize(100);
+        sc.setSize(40);
         //sc.setEpsilon(1.1);
-        float vv = 0.867649f;
+        float vv = 0.200001f;
+        //float vv = 0.037645f;
         float ss = std::sqrt((std::log(1.0f / vv - 1.0f) - BETA) / ALPHA);
         cout << "ss "<< ss << "vv " << vv<< endl;
         sc.setRadius(ss);
 
         m1 = getmemused(); t1 = getms();
-        index.linearSearch(sc);
-        //index.search(sc);
+        //index.linearSearch(sc);
+        index.search(sc);
         cout << "demo search mem: " << getmemused() - m1 << " time: " << getms() - t1 <<  endl;
         cout << endl
              << "Rank\tID\tDistance\tss" << std::showbase << endl;

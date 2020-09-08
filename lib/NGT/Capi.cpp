@@ -336,7 +336,7 @@ static bool ngt_search_index_(NGT::Index* pindex, NGT::Object *ngtquery, size_t 
     sc.setEdgeSize(edge_size);// set # of edges for each node
   }
 
-  pindex->search(sc);
+  pindex->linearSearch(sc);
   
   // delete the query object.
   pindex->deleteObject(ngtquery);
